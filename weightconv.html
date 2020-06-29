@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<title>Weight Converter</title>
+<head>
+<script type="text/javascript">
+
+
+var factors1 = new Array(1, 1000);
+var factors2 = new Array(0.001,1);
+
+var factors = new Array(factors1,factors2);
+
+function convert_unit()
+{
+	from_index = document.weight_con.from_unit.selectedIndex;
+	to_index = document.weight_con.to_unit.selectedIndex;
+	factor = factors[from_index][to_index];
+	document.getElementById("formula").innerHTML = document.weight_con.from_unit.options[document.weight_con.from_unit.selectedIndex].text + " = " + factor + " " + document.weight_con.to_unit.options[document.weight_con.to_unit.selectedIndex].text;
+	if(isNaN(document.weight_con.from_value.value))
+		document.getElementById("to_value").innerHTML = "Not a valid number input.";
+	else
+		document.getElementById("to_value").innerHTML = factor * document.weight_con.from_value.value;
+}
+</script>
+</head>
+<body>
+
+<h2>Weight Converter</h2>
+<p>
+
+<p><form name="weight_con">
+
+<table>
+
+	<tr>
+		<td>From </td>
+
+		<td>
+			<select name=from_unit onChange="convert_unit()";>
+			<option> Kilograms
+			<option> Grams
+			</select>
+
+		</td>
+		<td>  To </td>
+		<td>
+			<select name=to_unit onChange="convert_unit()";>
+			<option> Kilograms
+			<option> Grams
+			</select>
+
+		</td>
+	</tr>
+	<tr>
+		<td> </td><td colspan="3"><div id="formula">Kilograms = 1 Kilograms</div></td>
+	</tr>
+
+	<tr>
+		<td colspan="4"> </td>
+	</tr>
+
+	<tr>
+		<td>Enter </td>
+		<td><input type="text" name="from_value" value="1" size="12" maxweight="12"></td>
+		<td> <input type=button value="Convert" onClick="convert_unit()";> </td>
+		<td><div id="to_value">1</div></td>
+	</tr>
+
+
+</table>
+
+</form>
+</body>
+</html>
